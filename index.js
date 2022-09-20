@@ -11,7 +11,7 @@ app.use(bodyParser.json({extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(
     cors({ 
-        Origin: 'http://localhost:4200', 
+        Origin: 'http://localhost:8100', 
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         allowedHeaders: [
             'Content-Type', 

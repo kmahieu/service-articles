@@ -1,5 +1,6 @@
 import User from '../Model/articlesModel.js'
 import mongoose from 'mongoose'
+import Article from '../Model/articlesModel.js';
 
 export var getArticles = async (req, res) => {
     try {
@@ -25,10 +26,12 @@ export const getArticle = async (req, res) => {
 //wesh
 export const createArticle = async (req, res) => {
     const body = req.body;
-    const newArticle = new User(body);
+    const newArticle = new Article(body);
+    let response;
+    const newUser = new User()
 
     try {
-
+        response = await request('http://service-articles-clstp:80/')
         await newArticle.save();
 
         res.status(201).json(newArticle);
