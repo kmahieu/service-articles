@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\kmahi\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\kmahi\\.nuget\\packages"
-    ]
-  }
-}
