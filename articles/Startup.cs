@@ -28,6 +28,14 @@ namespace articles
         {
 
             services.AddControllers();
+            services.AddCors(options =>
+           {
+               options.AddPolicy("mypolicy", builder =>
+                   builder.WithOrigins("*")
+                   .AllowAnyMethod()
+                   .AllowAnyHeader());
+           }
+            );
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "articles", Version = "v1" });
@@ -47,6 +55,8 @@ namespace articles
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("mypolicy");
 
             app.UseAuthorization();
 
