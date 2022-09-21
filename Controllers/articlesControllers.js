@@ -24,6 +24,19 @@ export const getArticle = async (req, res) => {
     }
 }
 
+export const getArticleByCategorieId = async (req, res) => {
+    try
+    {
+        console.log("wwww" + req.params.id);
+
+        const upArticle = await Article.findOne({"categorieId": req.params.id});
+        res.status(201).json(upArticle);
+    }catch (error) 
+    {
+        res.status(404).json({ message: error.message});
+    }
+}
+
 
 
 export const createArticle = async (req, res) => {
