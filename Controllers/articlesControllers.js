@@ -1,7 +1,6 @@
 import User from '../Model/articlesModel.js'
 import mongoose from 'mongoose'
 import Article from '../Model/articlesModel.js';
-import Categorie from '../Model/categoriesModel.js';
 
 export var getArticles = async (req, res) => {
     try {
@@ -30,11 +29,30 @@ export const getArticle = async (req, res) => {
 export const createArticle = async (req, res) => {
     const body = req.body;
     const newArticle = new Article(body);
+    const catId = newArticle.categorieId;
+    const usId = newArticle.userId;
 
-    
     try {
-        await newArticle.save();
+        await fetch(`http://localhost:2000/categorie/${catId}`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data['_id']);
+                newArticle.Categorie._id = data['_id'];
+                newArticle.Categorie.name = data['name'];
+             //   data['name'] = newArticle.Categorie.name;
+            });
 
+            await fetch(`http://localhost:1000/user/${usId}`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data['_id']);
+                newArticle.User._id = data['_id'];
+                newArticle.User.name = data['name'];
+                newArticle.User.firstname = data['firstname'];
+
+             //   data['name'] = newArticle.Categorie.name;
+            });
+        await newArticle.save();
         res.status(201).json(newArticle);
         
     } catch (error) {

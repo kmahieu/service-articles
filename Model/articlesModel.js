@@ -1,6 +1,4 @@
 
-import  Categorie  from './categoriesModel.js';
-import  User  from './userModel.js';
 import mongoose from "mongoose";
 
 const articleShema = mongoose.Schema({
@@ -10,11 +8,16 @@ const articleShema = mongoose.Schema({
     "categorieId": String,
     "userId": String,
     "User": {
-        type: User
+        _id: {type: String},
+        name: {type: String},
+        firstname: {type: String},
+        email: {type: String},
     },
     "Categorie": {
-        type: Categorie
-    }
+        type: {type: String},
+        _id: {type: String},
+        name: {type: String}
+    }, 
 });
 
 const Article = mongoose.model('article', articleShema);
