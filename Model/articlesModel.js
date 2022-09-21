@@ -1,6 +1,6 @@
 
-import { Categorie } from '../Model/categoriesModel';
-import { User } from '../Model/userModel';
+import  Categorie  from './categoriesModel.js';
+import  User  from './userModel.js';
 import mongoose from "mongoose";
 
 const articleShema = mongoose.Schema({
@@ -9,8 +9,12 @@ const articleShema = mongoose.Schema({
     "description": String,
     "categorieId": String,
     "userId": String,
-    "User": User,
-    "Categorie": Categorie,
+    "User": {
+        type: User
+    },
+    "Categorie": {
+        type: Categorie
+    }
 });
 
 const Article = mongoose.model('article', articleShema);
